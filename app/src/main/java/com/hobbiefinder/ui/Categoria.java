@@ -5,10 +5,10 @@ public class Categoria{
     public Integer id;
     public String nome;
 
-    public String getNome() {
+    public String getName() {
         return nome;
     }
-    public void setName(String name) {
+    public void setName(String nome) {
         this.nome = nome;
     }
     public Integer getId() {

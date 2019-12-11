@@ -28,9 +28,9 @@ import java.util.List;
 
 public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.ViewHolder>
 {
-    private List<JSONObject> categorias;
+    private List<String> categorias;
 
-    public CategoriaAdapter(List<JSONObject> list) {
+    public CategoriaAdapter(List<String> list) {
         this.categorias = list;
     }
 
@@ -45,11 +45,7 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i)
     {
-        try {
-            viewHolder.setItemTitle(getCategorias(i).getString("nome"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        viewHolder.setItemTitle(getCategorias(i));
     }
 
     @Override
@@ -62,7 +58,7 @@ public class CategoriaAdapter extends RecyclerView.Adapter<CategoriaAdapter.View
         return categorias.size();
     }
 
-    public JSONObject getCategorias(int i) {
+    public String getCategorias(int i) {
         return this.categorias.get(i);
     }
 
