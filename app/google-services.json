@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "668194968476",
+    "firebase_url": "https://hobbiefinder-8774f.firebaseio.com",
+    "project_id": "hobbiefinder-8774f",
+    "storage_bucket": "hobbiefinder-8774f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668194968476:android:53a5ee25e4f013dd222e59",
+        "android_client_info": {
+          "package_name": "com.hobbiefinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "668194968476-0u9lj8eto27oda22s6ibelikpvqiqcp8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hobbiefinder",
+            "certificate_hash": "65ccd9464fe60a3cc4ee827647aae66223fa134a"
+          }
+        },
+        {
+          "client_id": "668194968476-9batncfl5f28ll4qe1m7antri65sorj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiDRYKh0uTDawh1jZpW7kn9YEfc8mWetY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "668194968476-9batncfl5f28ll4qe1m7antri65sorj8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

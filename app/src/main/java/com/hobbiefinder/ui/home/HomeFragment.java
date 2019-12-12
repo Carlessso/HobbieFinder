@@ -1,8 +1,10 @@
 package com.hobbiefinder.ui.home;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,6 +50,8 @@ public class HomeFragment extends Fragment {
     private ArrayList<Hobbie> modelDataArrayList;
     private ArrayList<String> names = new ArrayList<String>();
     private ListView lista;
+    private List<Hobbie> hobbiesList;
+    private HobbieAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -104,20 +108,22 @@ public class HomeFragment extends Fragment {
             // Application of the Array to the Spinner
 
             for (int i = 0; i < modelDataArrayList.size(); i++){
-                names.add(modelDataArrayList.get(i).getNome());
+                names.add(modelDataArrayList.get(i).getNome()+ " - " +modelDataArrayList.get(i).getDetalhes());
             }
 //
             String[] strings = new String[names.size()];
 //
             for (int i = 0; i < names.size(); i++)
             {
-                System.out.println(names.get(i));
+//                System.out.println(names.get(i));
                 strings[i] = names.get(i);
             }
 
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1,strings);
+//            ArrayAdapter<Hobbie> adapter = new ArrayAdapter<Hobbie>(getContext(), android.R.layout.simple_list_item_1, modelDataArrayList);
 
-            lista.setAdapter(adapter);
+              adapter = new HobbieAdapter(modelDataArrayList, getActivity());
+
+              lista.setAdapter(adapter);
 
 
 //            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(),  android.R.layout.simple_spinner_item, names);
@@ -140,6 +146,8 @@ public class HomeFragment extends Fragment {
                 JSONObject ob = x.getJSONObject(i);
                 playersModel.setId(Integer.parseInt(ob.getString("id")));
                 playersModel.setNome(ob.getString("nome"));
+                playersModel.setDetalhes(ob.getString("detalhes"));
+                playersModel.setVagas(ob.getInt("vagas"));
                 tennisModelArrayList.add(playersModel);
             }
 
