@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +56,7 @@ public class SlideshowFragment extends Fragment {
     private static ProgressDialog mProgressDialog;
     private ArrayList<Categoria> modelDataArrayList;
     private ArrayList<String> names = new ArrayList<String>();
+    private ListView listView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
@@ -65,6 +67,7 @@ public class SlideshowFragment extends Fragment {
 
         tfdNomeCat = (TextView) root.findViewById(R.id.tfdNomeCategoria);
         btSaveCategoria = (Button) root.findViewById(R.id.btSaveCategoria);
+        listView = (ListView) root.findViewById((R.id.list_categorias));
 
         btSaveCategoria.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,9 +100,7 @@ public class SlideshowFragment extends Fragment {
 ////            }
 ////        });
 
-//        loadJSON();
-
-//        initComponents(root);
+        loadJSON();
 
         return root;
     }
@@ -136,11 +137,26 @@ public class SlideshowFragment extends Fragment {
 
             modelDataArrayList = parseInfo(response);
 
-            // Application of the Array to the Spinner
 
             for (int i = 0; i < modelDataArrayList.size(); i++){
                 names.add(modelDataArrayList.get(i).getName());
             }
+
+            String[] strings = new String[names.size()];
+
+            for (int i = 0; i < names.size(); i++)
+            {
+                strings[i] = names.get(i);
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_list_item_1, strings);
+
+
+            // Assign adapter to ListView
+
+            listView.setAdapter(adapter);
+
 
 
         }else {
@@ -228,17 +244,6 @@ public class SlideshowFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public  void initComponents(View root)
-    {
-        RecyclerView recyclerView         = (RecyclerView) root.findViewById(R.id.recicle_cat);
-        List<String> categorias           = names;
-        CategoriaAdapter adapter          = new CategoriaAdapter(categorias);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(root.getContext());
-
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
     }
 
     public void salvarCategoria()
